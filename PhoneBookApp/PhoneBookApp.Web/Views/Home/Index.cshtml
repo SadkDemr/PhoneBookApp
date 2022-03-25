@@ -1,0 +1,25 @@
+﻿@model List<PersonListModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="mt-4 table table-hover table-bordered table-sm">
+    <thead>
+        <tr>
+            <td>Full Name</td>
+            <td>Informations</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PersonsFullName</td>
+                <td><getInformationCount persons-id="@item.Id"></getInformationCount></td>
+                <td>
+                    <a asp-action="Create" asp-controller="Information" asp-route-id="@item.Id">Personal Information </a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
