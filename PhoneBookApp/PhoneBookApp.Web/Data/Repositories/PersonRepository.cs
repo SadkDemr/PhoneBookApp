@@ -1,5 +1,6 @@
 ﻿using PhoneBookApp.Web.Data.Context;
 using PhoneBookApp.Web.Data.Entities;
+using PhoneBookApp.Web.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace PhoneBookApp.Web.Data.Repositories
 {
-    public class PersonRepository
+    public class PersonRepository : IPersonRepository
     {
         private PhoneContext _context;
 
         public PersonRepository(PhoneContext context)
         {
             _context = context;
+           
         }
 
         public List<Person> GetAll()
+
         {
             return _context.Persons.ToList();
         }

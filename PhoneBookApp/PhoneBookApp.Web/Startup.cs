@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using PhoneBookApp.Web.Data.Context;
+using PhoneBookApp.Web.Data.Interfaces;
+using PhoneBookApp.Web.Data.Repositories;
+using PhoneBookApp.Web.Mappings;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +27,8 @@ namespace PhoneBookApp.Web
             {
                 opt.UseSqlServer("server=(localdb)\\mssqllocaldb; database=PhoneDb; integrated security=true");
             });
+            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonMapper, PersonMapper>();
             services.AddControllersWithViews();
         }
 
