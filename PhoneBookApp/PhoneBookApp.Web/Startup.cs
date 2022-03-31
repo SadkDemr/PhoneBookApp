@@ -28,7 +28,9 @@ namespace PhoneBookApp.Web
                 opt.UseSqlServer("server=(localdb)\\mssqllocaldb; database=PhoneDb; integrated security=true");
             });
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IInformationRepository, InformationRepository>();
             services.AddScoped<IPersonMapper, PersonMapper>();
+            services.AddScoped<IInformationMapper, InformationMapper>();
             services.AddControllersWithViews();
         }
 

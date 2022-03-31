@@ -13,14 +13,18 @@ namespace PhoneBookApp.Web.Controllers
 {
     public class InformationController : Controller
     {
-        private readonly PhoneContext _context;
+       
         private readonly IPersonRepository _personRepository;
+        private readonly IInformationRepository _informationRepository;
         private readonly IPersonMapper _personMapper;
-        public InformationController(PhoneContext context, IPersonMapper personMapper, IPersonRepository personRepository)
+        private readonly IInformationMapper _informationMapper;
+        public InformationController(IPersonMapper personMapper, IPersonRepository personRepository, IInformationRepository informationRepository, IInformationMapper informationMapper)
         {
-            _context = context;
+           
             _personMapper = personMapper;
             _personRepository = personRepository;
+            _informationRepository = informationRepository;
+            _informationMapper = informationMapper;
         }
         public IActionResult Create(int id)
         {
@@ -30,16 +34,7 @@ namespace PhoneBookApp.Web.Controllers
         [HttpPost]
         public IActionResult Create(InformationCreateModel model)
         {
-            _context.Informations.Add(new Data.Entities.Information { 
-            MobileNumber= model.MobileNumber,
-            OfficePhone=model.OfficePhone,
-            HomePhone=model.HomePhone,
-            Mail=model.Mail,
-            Adress=model.Adress,
-            PersonsID=model.PersonsID
-
-            });
-            _context.SaveChanges();
+            _informationRepository.Create(_informationMapper.Map(model));
 
             return RedirectToAction ("Index","Home");
         }

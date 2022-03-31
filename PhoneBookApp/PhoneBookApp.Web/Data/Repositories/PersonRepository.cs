@@ -28,5 +28,11 @@ namespace PhoneBookApp.Web.Data.Repositories
         {
             return _context.Persons.SingleOrDefault(x => x.Id == id);
         }
+
+        public void Create(Person user)
+        {
+            _context.Persons.Add(user);
+            _context.SaveChanges();
+        }
     }
 }

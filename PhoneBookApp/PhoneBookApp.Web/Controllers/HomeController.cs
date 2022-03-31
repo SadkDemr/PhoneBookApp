@@ -8,12 +8,12 @@ namespace PhoneBookApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly PhoneContext _context;
+       
         private readonly IPersonRepository _personRepository;
         private readonly IPersonMapper _personMapper;
-        public HomeController(PhoneContext context, IPersonRepository personRepository, IPersonMapper personMapper)
+        public HomeController( IPersonRepository personRepository, IPersonMapper personMapper)
         {
-            _context = context;
+            
             _personRepository = personRepository;
             _personMapper = personMapper;
         }
