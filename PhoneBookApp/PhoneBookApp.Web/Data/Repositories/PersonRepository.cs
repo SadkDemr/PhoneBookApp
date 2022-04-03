@@ -18,12 +18,6 @@ namespace PhoneBookApp.Web.Data.Repositories
            
         }
 
-        public List<Person> GetAll()
-
-        {
-            return _context.Persons.ToList();
-        }
-
         public Person GetById(int id)
         {
             return _context.Persons.SingleOrDefault(x => x.Id == id);
@@ -31,8 +25,19 @@ namespace PhoneBookApp.Web.Data.Repositories
 
         public void Create(Person user)
         {
-            _context.Persons.Add(user);
+            _context.Set<Person>().Add(user);
             _context.SaveChanges();
+        }
+        public void Remove(Person user)
+        {
+            _context.Set<Person>().Remove(user);
+            _context.SaveChanges();
+        }
+
+        public List<Person> GetAll()
+        {
+            return _context.Set<Person>().ToList();
         }
     }
 }
+

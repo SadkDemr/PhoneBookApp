@@ -18,8 +18,19 @@ namespace PhoneBookApp.Web.Data.Repositories
         }
         public void Create(Information information)
         {
-            _context.Informations.Add(information);
+            _context.Set<Information>().Add(information);
             _context.SaveChanges();
+        }
+
+        public void Remove(Information information)
+        {
+            _context.Set<Information>().Remove(information);
+            _context.SaveChanges();
+        }
+
+        public List<Information> GetAll()
+        {
+            return _context.Set<Information>().ToList();
         }
     }
 }
